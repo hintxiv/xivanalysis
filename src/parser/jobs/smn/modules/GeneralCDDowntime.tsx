@@ -8,6 +8,8 @@ import React from 'react'
 import {Event} from 'events'
 
 export default class GeneralCDDowntime extends CooldownDowntime {
+
+	static debug = true
 	// Need dependency to ensure proper ordering of normalise calls
 	@dependency private precastStatus!: PrecastStatus
 
