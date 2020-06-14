@@ -35,17 +35,6 @@ class DriftWindow {
 		this.actionId = actionId
 		this.start = start
 	}
-
-	public addAbility(event: CastEvent) {
-		const action = getDataBy(ACTIONS, 'id', event.ability.guid)
-		if (action) {
-			this.abilityRotation.push(event)
-		}
-	}
-
-	public getLastActionId(): number {
-		return this.abilityRotation.slice(-1)[0].ability.guid
-	}
 }
 
 export default class Drift extends Module {
@@ -65,7 +54,6 @@ export default class Drift extends Module {
 
 	protected init() {
 		this.addEventHook('cast', {by: 'player', abilityId: DRIFT_ABILITIES}, this.onDriftableCast)
-		this.addEventHook('cast', {by: 'player'}, this.onCast)
 	}
 
 	private onDriftableCast(event: CastEvent) {
@@ -96,14 +84,7 @@ export default class Drift extends Module {
 
 		// Push to table.
 		this.driftedWindows.push(window)
-		window.addAbility(event)
 		this.currentWindows[actionId] = new DriftWindow(actionId, event.timestamp)
-	}
-
-	private onCast(event: CastEvent) {
-		for (const window of Object.values(this.currentWindows)) {
-			window.addAbility(event)
-		}
 	}
 
 	private createTimelineButton(timestamp: number) {
