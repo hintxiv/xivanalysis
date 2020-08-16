@@ -22,6 +22,11 @@ export default class Combatants extends Entities {
 		return player
 	}
 
+	isActorPlayer(actorId) {
+		const player = this.getEntity(actorId)
+		return Boolean(player.info.server)
+	}
+
 	get selected() {
 		return this.getEntity(this.parser.player.id)
 	}

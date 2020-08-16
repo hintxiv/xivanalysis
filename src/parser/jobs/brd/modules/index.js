@@ -1,5 +1,6 @@
 import AdditionalStats from './AdditionalStats'
 import Barrage from './Barrage'
+import BattleVoice from './BattleVoice'
 import Cooldowns from './Cooldowns'
 import DoTs from './DoTs'
 import MultiHitSkills from './MultiHitSkills'
@@ -14,6 +15,7 @@ import Weaving from './Weaving'
 export default [
 	AdditionalStats,
 	Barrage,
+	BattleVoice,
 	Cooldowns,
 	DoTs,
 	MultiHitSkills,
