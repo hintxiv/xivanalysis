@@ -17,7 +17,7 @@ export class EventsView extends Analyser {
 	static title = 'Events View'
 	static handle = 'eventsView'
 	static displayOrder = DISPLAY_ORDER.EVENTS_VIEW
-	static debug = true
+	static debug = false
 
 	private events: Event[] = []
 
