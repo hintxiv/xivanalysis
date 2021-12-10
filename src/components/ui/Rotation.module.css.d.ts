@@ -7,6 +7,7 @@ declare namespace RotationModuleCssNamespace {
     link: string;
     ogcd: string;
     ogcdSize: string;
+    warnOverlay: string;
   }
 }
 

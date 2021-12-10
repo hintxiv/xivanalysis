@@ -7,12 +7,14 @@ import {Ability} from 'fflogs'
 import React, {Component} from 'react'
 import overlayStyle from './Procs/ProcOverlay.module.css'
 import styles from './Rotation.module.css'
+import warnStyle from './Warn/WarnOverlay.module.css'
 
 export interface RotationEvent {
 	ability?: Ability,
 	cause?: Cause,
 	action?: number
 	isProc?: boolean
+	warn?: boolean
 }
 interface RotationProps {
 	events: RotationEvent[]
@@ -57,6 +59,7 @@ export default class Rotation extends Component<RotationProps> {
 					styles.link,
 					{[styles.ogcd]: !action.onGcd},
 					event.isProc ? overlayStyle.procOverlay : '',
+					event.warn ? styles.warnOverlay : '',
 				]
 
 				const iconSize = action.onGcd ? styles.gcdSize : styles.ogcdSize
@@ -65,10 +68,7 @@ export default class Rotation extends Component<RotationProps> {
 
 				const Link = isItem ? ItemLink : ActionLink
 
-				return <div
-					key={index}
-					className={cn(...linkClassName)}
-				>
+				return <div key={index} className={cn(...linkClassName)}>
 					<Link
 						showName={false}
 						iconSize={iconSize}
