@@ -20,6 +20,11 @@ export const MACHINIST = new Meta({
 	],
 	changelog: [
 		{
+			date: new Date('2021-12-13'),
+			Changes: () => <>Updated the Wildfire module.</>,
+			contributors: [CONTRIBUTORS.HINT],
+		},
+		{
 			date: new Date('2021-12-08'),
 			Changes: () => <>Updated Machinist modules for Endwalker.</>,
 			contributors: [CONTRIBUTORS.HINT],
