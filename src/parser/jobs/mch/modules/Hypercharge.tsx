@@ -112,7 +112,7 @@ export class Hypercharge extends Analyser {
 
 		return <Fragment>
 			<Message>
-				<Trans id="mch.hypercharge.accordion.message">Every overheat window should ideally include {HYPERCHARGE_GCD_TARGET} casts of <ActionLink {...this.data.actions.HEAT_BLAST}/> and enough casts of <ActionLink {...this.data.actions.GAUSS_ROUND}/> and <ActionLink {...this.data.actions.RICOCHET}/> to avoid overcapping their charges. If you clip a lot while weaving, overcapping is still preferable to dropping a Heat Blast. Each overheat window below indicates how many GCDs it contained and will display all the casts in the window if expanded.</Trans>
+				<Trans id="mch.hypercharge.accordion.message">Every <ActionLink action="HYPERCHARGE"/> window should ideally include {HYPERCHARGE_GCD_TARGET} casts of <ActionLink action="HEAT_BLAST"/> and enough casts of <ActionLink action="GAUSS_ROUND"/> and <ActionLink action="RICOCHET"/> to avoid overcapping their charges. If you clip a lot while weaving, overcapping is still preferable to dropping a Heat Blast. Each overheat window below indicates how many GCDs it contained and will display all the casts in the window if expanded.</Trans>
 			</Message>
 			<Accordion
 				exclusive={false}

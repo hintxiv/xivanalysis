@@ -12,7 +12,8 @@ import {History, HistoryEntry} from 'parser/core/modules/ActionWindow/History'
 import {Data} from 'parser/core/modules/Data'
 import Suggestions, {SEVERITY, TieredSuggestion} from 'parser/core/modules/Suggestions'
 import {Timeline} from 'parser/core/modules/Timeline'
-import React from 'react'
+import React, {Fragment} from 'react'
+import {Message} from 'semantic-ui-react'
 
 // We always want 6 GCDs in WF
 const EXPECTED_GCDS = 6
@@ -153,7 +154,7 @@ export class Wildfire extends Analyser {
 				gcds++
 				if (gcds > wildfire.data.stacks) {
 					// This GCD must have ghosted since it didn't generate a debuff stack
-					return {action: event.action, warn: true}
+					return {action: event.action, ghosted: true}
 				}
 			}
 			return {action: event.action}
@@ -163,12 +164,12 @@ export class Wildfire extends Analyser {
 	override output() {
 		if (this.history.entries.length === 0) { return undefined }
 
-		const gcdTarget = {
+		const gcdHeader = {
 			header: <Trans id="mch.wildfire.rotation-table.header.gcd-count">GCDs</Trans>,
 			accessor: 'gcds',
 		}
 
-		const damageNote = {
+		const damageHeader = {
 			header: <Trans id="mch.wildfire.rotation-table.header.damage">Damage</Trans>,
 			accessor: 'damage',
 		}
@@ -188,11 +189,16 @@ export class Wildfire extends Analyser {
 			rotation: this.getRotation(wildfire),
 		}))
 
-		return <RotationTable
-			targets={[gcdTarget]}
-			notes={[damageNote]}
-			data={rotationData}
-			onGoto={this.timeline.show}
-		/>
+		return <Fragment>
+			<Message>
+				<Trans id="mch.wildfire.table.message">Every <ActionLink action="WILDFIRE"/> window should ideally include {EXPECTED_GCDS} GCDs to maximize the debuff's potency. Transparent GCDs in the table below were <i>ghosted</i>, meaning they did not count toward Wildfire's damage.</Trans>
+			</Message>
+			<RotationTable
+				targets={[gcdHeader]}
+				notes={[damageHeader]}
+				data={rotationData}
+				onGoto={this.timeline.show}
+			/>
+		</Fragment>
 	}
 }
