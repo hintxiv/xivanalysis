@@ -64,7 +64,7 @@ export class Chakra extends Gauge {
 				handle: 'chakra',
 				height: 32,
 				color: CHAKRA_COLOUR,
-				collapse: false,
+				forceCollapsed: true,
 			},
 		}))
 
